@@ -1,0 +1,9 @@
+            #include <stdio.h>
+  declarations
+
+int main(int argc, char *argv[])
+{
+  corps
+
+  return 0;
+}

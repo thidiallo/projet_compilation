@@ -1,0 +1,10 @@
+PROGRAM nomprog;        
+
+var var1 , var2 : char ;
+
+BEGIN
+
+
+corps
+
+END.
