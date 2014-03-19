@@ -14,7 +14,6 @@ void programmePrincipal(FILE *fic, char* dec, char* corps)
 
 char *converType(char * type)
 {
-   printf("le type trouve est %s\n",type);
    if(strcmp(type,"integer")==0 || strcmp(type,"boolean")==0 )
    {
      return strdup("int ");

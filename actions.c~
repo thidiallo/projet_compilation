@@ -29,10 +29,3 @@ char *converType(char * type)
                     }
 }
 
-void libereChaine(char * ch)
-{
-   if(ch =! NULL)
-   {
-     free(ch);
-   }
-}

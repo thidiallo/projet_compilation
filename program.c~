@@ -1,5 +1,5 @@
-            #include <stdio.h>
-  declarations
+              #include <stdio.h>
+  int var1,var2;
 
 int main(int argc, char *argv[])
 {

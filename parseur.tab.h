@@ -47,8 +47,12 @@
      FINPROG = 265,
      DEC = 266,
      VAR = 267,
-     IDENT = 268,
-     TYPE = 269
+     CONST = 268,
+     IDENT = 269,
+     TYPE = 270,
+     NOMBRE = 271,
+     CHAR = 272,
+     CHAINE = 273
    };
 #endif
 
@@ -66,7 +70,7 @@ typedef union YYSTYPE
 
 
 /* Line 2068 of yacc.c  */
-#line 70 "parseur.tab.h"
+#line 74 "parseur.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
