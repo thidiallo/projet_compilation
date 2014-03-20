@@ -9,6 +9,8 @@
 
     extern FILE* yyin;
     extern FILE* yyout;
+
+    char *defines;
 %}
 
 %union{
@@ -18,26 +20,29 @@
 %token DEC VAR CONST
 %token <string> IDENT TYPE NOMBRE CHAR CHAINE
 
-%type <string> dec_var liste_dec ident_var corps_prog
+%type <string> dec_var liste_dec ident_var 
 %type <string> dec_const liste_const val_const
 %type <string> declarations
+%type <string> corps_prog
 
 %start prog
 
 %%
-prog: PROGRAM IDENT ';' RL declarations RL DEBUT RL corps_prog RL FINPROG { programmePrincipal(yyout, $5, $9);};
+prog: PROGRAM IDENT ';' RL declarations RL DEBUT RL corps_prog RL FINPROG { programmePrincipal(yyout,defines, $5, $9); };
 
-declarations : dec_var RL dec_const { $$ = strcat($1,$3); };
+declarations : dec_var RL dec_const { $$ = $1; }
+             | dec_const RL dec_var { $$ = $3; }
+             ;
 
 dec_var: VAR liste_dec { $$ = $2; };
-liste_dec: ident_var ':' TYPE ';' { $$ = strcat($3,strcat($1,";\n")); };
+liste_dec: ident_var ':' TYPE ';' { $$ = strcat($3,strcat($1,";")); };
 ident_var:
           IDENT { $$ = $1; }
          |IDENT ',' ident_var { $$ = strcat($1,strcat(strdup(","),$3)); }
          ;
 
-dec_const: CONST liste_const { $$ = $2; };
-liste_const: IDENT ':' TYPE '=' val_const { $$ = strcat( strdup("#define "),strcat($1,strcat( strdup(" "),$5 )) );};
+dec_const: CONST liste_const { defines = strcat($2, strcat(strdup("\n"),defines)); };
+liste_const: IDENT ':' TYPE '=' val_const ';' { $$ = strcat( strdup("#define "),strcat($1,strcat( strdup(" "),$5 )));};
 val_const: NOMBRE { $$ = $1;}
          | CHAR { $$ = $1;}
          | CHAINE { $$ = $1;}
@@ -64,7 +69,7 @@ int main(int argc, char *argv[])
       f = fopen(argv[1],"r");
       if(f==NULL)
       {
-return -1;
+        return -1;
       }
       yyin = f;
     }
@@ -72,12 +77,14 @@ return -1;
     fic_out = fopen("program.c","w");
     yyout = fic_out;
 
+    defines = strdup("");
+
     yyparse();
     printf("\n");
-    
+
     if(f!=NULL)
     {
-fclose(f);
+      fclose(f);
     }
     fclose(fic_out);
 }

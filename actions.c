@@ -1,11 +1,12 @@
 #include "actions.h"
 
-void programmePrincipal(FILE *fic, char* dec, char* corps)
+void programmePrincipal(FILE *fic,char* defines, char* dec, char* corps)
 {
    fprintf(fic,"#include <stdio.h>\n");
-   fprintf(fic,"  %s\n",dec);
+   fprintf(fic,"  %s\n",defines);
    fprintf(fic,"int main(int argc, char *argv[])\n");
    fprintf(fic,"{\n");
+   fprintf(fic,"  %s\n",dec);
    fprintf(fic,"  %s\n",corps);
    fprintf(fic,"  return 0;\n");
    fprintf(fic,"}\n");

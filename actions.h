@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void programmePrincipal(FILE *fic, char* dec, char* corps);
+void programmePrincipal(FILE *fic,char* defines, char* dec, char* corps);
 
 char *converType(char * type);
 
