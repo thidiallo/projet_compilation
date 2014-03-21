@@ -37,8 +37,7 @@ LETTRE [a-zA-Z]
 \"{LETTRE}+\" { yylval.string = strdup(yytext);
                    return CHAINE; }
 
-
 (\n)* { return RL; }
-<<EOF>> {exit(1);}
+<<EOF>> { exit(0);}
 
 %%

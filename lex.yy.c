@@ -379,7 +379,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[86] =
     {   0,
-       17,   17,   19,   18,   17,   18,   18,   11,   14,    9,
+        0,    0,   19,   18,   17,   18,   18,   11,   14,    9,
        10,   12,   13,   13,   13,   13,   13,   13,   13,   13,
        13,   13,   13,   13,   17,    0,    0,    0,   14,   13,
        13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
@@ -877,16 +877,16 @@ YY_RULE_SETUP
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 41 "lexeur.l"
+#line 40 "lexeur.l"
 { return RL; }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 42 "lexeur.l"
-{exit(1);}
+#line 41 "lexeur.l"
+{ exit(0);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 44 "lexeur.l"
+#line 43 "lexeur.l"
 ECHO;
 	YY_BREAK
 #line 893 "lex.yy.c"
@@ -1885,7 +1885,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 44 "lexeur.l"
+#line 43 "lexeur.l"
 
 
 

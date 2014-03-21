@@ -37,22 +37,23 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     RL = 258,
-     DECLARATIONS = 259,
-     CORPS = 260,
-     CORPS_PROG = 261,
-     PROGRAM = 262,
-     DEBUT = 263,
-     FIN = 264,
-     FINPROG = 265,
-     DEC = 266,
-     VAR = 267,
-     CONST = 268,
-     IDENT = 269,
-     TYPE = 270,
-     NOMBRE = 271,
-     CHAR = 272,
-     CHAINE = 273
+     VIR = 258,
+     IDENT = 259,
+     RL = 260,
+     DECLARATIONS = 261,
+     CORPS = 262,
+     CORPS_PROG = 263,
+     PROGRAM = 264,
+     DEBUT = 265,
+     FIN = 266,
+     FINPROG = 267,
+     DEC = 268,
+     VAR = 269,
+     CONST = 270,
+     TYPE = 271,
+     NOMBRE = 272,
+     CHAR = 273,
+     CHAINE = 274
    };
 #endif
 
@@ -70,7 +71,7 @@ typedef union YYSTYPE
 
 
 /* Line 2068 of yacc.c  */
-#line 74 "parseur.tab.h"
+#line 75 "parseur.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -1,9 +1,14 @@
-            #include <stdio.h>
-  #define tva 
+                              #include <stdio.h>
+  
+#define tva 
+#define coef
 
 int main(int argc, char *argv[])
 {
-  char var1,var2,var3,var4;
+  
+
+char var4,va
+int var6,var
   corps
 
   return 0;
