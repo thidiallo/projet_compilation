@@ -10,10 +10,12 @@ LETTRE [a-zA-Z]
 %%
 
 "PROGRAM"|"program" { return PROGRAM;}
+"function" { return FUNCTION;}
+"procedure" { return PROCEDURE;}
 
 "BEGIN"|"begin" { return DEBUT;}
 "END"|"end" { return FIN;}
-"END."|"end." { return FINPROG;}
+
 "corps" {return CORPS_PROG;}
 
 "integer"|"boolean"|"real"|"char"|"string" { yylval.string = converType(yytext);  return TYPE;}
@@ -24,6 +26,10 @@ LETTRE [a-zA-Z]
 ";" { return yytext[0];}
 "," { return yytext[0];}
 "=" { return yytext[0];}
+"(" { return yytext[0];}
+")" { return yytext[0];}
+"." { return yytext[0];}
+
 
 {LETTRE}({LETTRE}|"_"|{CHIFFRE})* {  yylval.string = strdup(yytext);
 				     return IDENT;}

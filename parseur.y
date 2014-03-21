@@ -10,7 +10,8 @@
     extern FILE* yyin;
     extern FILE* yyout;
 
-    char *defines;
+    char *entetes;
+    char *sous_programmes;
 %}
 
 %union{
@@ -18,25 +19,36 @@
 }
 
 %nonassoc IDENT VIR
-%left ';' RL
-%left ',' ':'
+%left ';' RL '(' ')'
+%left ',' ':' '.' TYPE
+%left DEBUT FIN
+%right PROGRAM
+%right FUNCTION PROCEDURE
 
-%token RL DECLARATIONS CORPS CORPS_PROG PROGRAM DEBUT FIN FINPROG
+%token RL PROGRAM DEBUT FIN CORPS_PROG
 %token DEC VAR CONST
 %token <string> IDENT TYPE NOMBRE CHAR CHAINE
+%token <string> FUNCTION
+%token <string> PROCEDURE
 
+%type <string> declarations
 %type <string> dec_var liste_dec ident_var 
 %type <string> dec_const liste_const val_const
-%type <string> declarations
-%type <string> corps_prog
+%type <string> dec_fonc list_arg
+%type <string> dec_proc
+
+
+%type <string> bloc_inst
 
 %start prog
 
 %%
-prog: PROGRAM IDENT ';' RL declarations DEBUT RL corps_prog RL FINPROG { programmePrincipal(yyout,defines, $5, $8);};
+prog: PROGRAM IDENT ';' RL declarations DEBUT RL bloc_inst RL FIN '.' { programmePrincipal(yyout,entetes,sous_programmes, $5, $8);};
 
 declarations : declarations dec_var { $$ = strcat($1,strcat(strdup("\n"),$2)); } 
              | declarations dec_const {$$ = strcat($1,$2); }
+             | declarations dec_fonc { $$ = strcat($1,$2); }
+             | declarations dec_proc { $$ = strcat($1,$2); }
              | { $$ = strdup(""); }
              ;
 
@@ -49,7 +61,7 @@ ident_var:
          | ident_var ',' IDENT { $$ = strcat($3,strcat(strdup(","),$1)); }
          ;
 
-dec_const: CONST liste_const { defines = strcat($2, strcat(strdup("\n"),defines)); $$ = strdup(""); };
+dec_const: CONST liste_const { entetes = strcat($2, strcat(strdup("\n"),entetes)); $$ = strdup(""); };
 liste_const: liste_const IDENT ':' TYPE '=' val_const ';' RL { $$ = strcat($1,strcat(strdup("\n"), strcat(strdup("#define "),strcat($2,strcat( strdup(" "),$6)))));}
            | { $$ = strdup(""); }
            ;
@@ -58,7 +70,22 @@ val_const: NOMBRE { $$ = $1;}
          | CHAINE { $$ = $1;}
          ;
 
-corps_prog: CORPS_PROG { $$ = "corps\n"; }
+dec_fonc: FUNCTION IDENT '(' list_arg ')' ':' TYPE ';' RL dec_var DEBUT RL bloc_inst RL FIN ';' RL { 
+         $$ =  strdup("");
+         sous_programmes = strcat(strcat(fonction($7, $2, $4, $10, $13 ) , strdup("\n")),sous_programmes); 
+};
+
+dec_proc: PROCEDURE IDENT '(' list_arg ')' ';' RL dec_var DEBUT RL bloc_inst RL FIN ';' RL { 
+         $$ =  strdup("");
+         sous_programmes = strcat(strcat(fonction("void", $2, $4, $8, $11 ) , strdup("\n")),sous_programmes); 
+};
+
+list_arg:list_arg ',' IDENT ':' TYPE { $$ = strcat($1, strcat(strdup(", "), strcat($5, strcat(strdup(" "),$3)))); }
+        | IDENT ':' TYPE { $$ =  strcat($3, strcat(strdup(" "),$1)); }
+        |  { $$ = strdup(""); }
+        ;
+
+bloc_inst: CORPS_PROG { $$ = "corps\n"; }
 
 %%
 
@@ -87,7 +114,8 @@ int main(int argc, char *argv[])
     fic_out = fopen("program.c","w");
     yyout = fic_out;
 
-    defines = strdup("");
+    entetes = strdup("");
+    sous_programmes = strdup("");
 
     yyparse();
     printf("\n");

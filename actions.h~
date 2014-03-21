@@ -7,6 +7,8 @@
 
 void programmePrincipal(FILE *fic,char* defines, char* dec, char* corps);
 
+char * fonction(char* type, char* ident, char* liste_arg, char* dec_var, char* bloc_inst );
+
 char *converType(char * type);
 
 #endif

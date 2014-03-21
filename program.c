@@ -1,14 +1,17 @@
-                              #include <stdio.h>
+                                              #include <stdio.h>
   
 #define tva 
-#define coef
 
+  PROCEDURE
+FO
 int main(int argc, char *argv[])
 {
   
 
-char var4,va
-int var6,var
+float toto,t
+
+char* bebe,t
+int koko,qiq
   corps
 
   return 0;

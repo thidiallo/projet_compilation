@@ -40,20 +40,19 @@
      VIR = 258,
      IDENT = 259,
      RL = 260,
-     DECLARATIONS = 261,
-     CORPS = 262,
-     CORPS_PROG = 263,
+     TYPE = 261,
+     FIN = 262,
+     DEBUT = 263,
      PROGRAM = 264,
-     DEBUT = 265,
-     FIN = 266,
-     FINPROG = 267,
+     PROCEDURE = 265,
+     FUNCTION = 266,
+     CORPS_PROG = 267,
      DEC = 268,
      VAR = 269,
      CONST = 270,
-     TYPE = 271,
-     NOMBRE = 272,
-     CHAR = 273,
-     CHAINE = 274
+     NOMBRE = 271,
+     CHAR = 272,
+     CHAINE = 273
    };
 #endif
 
@@ -64,14 +63,14 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 16 "parseur.y"
+#line 17 "parseur.y"
 
        char* string;
 
 
 
 /* Line 2068 of yacc.c  */
-#line 75 "parseur.tab.h"
+#line 74 "parseur.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
