@@ -1,20 +1,23 @@
 PROGRAM nomprog;
 
 var tata, toto : real;
-const tva : real = 0.20;
+    pop, papa:integer;
+    lele :string;
+const tva: real =3.12;
+      coef: integer = 2;
+const taux: integer =0.4;
 
-function fonc1(var4 : char):integer;
-var toto : string;
+function f1():integer;
+var v : integer;
 begin
-corps
+ corps
 end;
 
-procedure proc1(var4 : char);
-var toto : string;
+function f1():integer;
+var v : integer;
 begin
-corps
+ corps
 end;
-
 
 BEGIN
 
